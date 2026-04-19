@@ -174,7 +174,7 @@
 				</div>
 			</div>
 
-			<button class="btn btn-primary" style="margin-top: 1rem;" on:click={roll} disabled={base === 0 && skill === 0 && gear === 0}>
+			<button class="btn btn-primary" style="margin-top: 1rem;" on:click={roll} disabled={base === 0 && skill === 0 && gear === 0 && artifactD8 === 0 && artifactD10 === 0 && artifactD12 === 0}>
 				Roll Dice
 			</button>
 		</div>

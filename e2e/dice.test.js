@@ -146,6 +146,12 @@ test('should show final results after push', async ({ page }) => {
 		await expect(await dice.count()).toBe(1);
 	});
 
+	test('should enable roll button with artifact dice only', async ({ page }) => {
+		await page.selectOption('#artifactD12', '1');
+		const button = page.locator('button:has-text("Roll Dice")');
+		await expect(button).toBeEnabled();
+	});
+
 	test('should show artifact in config summary', async ({ page }) => {
 		await page.selectOption('#base', '1');
 		await page.selectOption('#artifactD8', '1');
