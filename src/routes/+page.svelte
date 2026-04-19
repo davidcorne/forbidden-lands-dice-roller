@@ -60,6 +60,21 @@
 	}
 
 	function newRoll() {
+		if (currentStep === 'result' && !hasPushed) {
+			const rollRecord = {
+				date: new Date().toISOString(),
+				config: { base, skill, gear, artifactD8, artifactD10, artifactD12 },
+				initialResults: [...initialResults],
+				pushedResults: [],
+				initialSuccesses,
+				finalSuccesses: initialSuccesses,
+				baseDamage: 0,
+				gearDamage: 0,
+				willpower: 0
+			};
+			saveRoll(rollRecord);
+			savedRolls = getRolls();
+		}
 		currentStep = 'configure';
 		initialResults = [];
 		pushedResults = [];

@@ -120,6 +120,14 @@ test('should show final results after push', async ({ page }) => {
 		await expect(page.locator('.history-item')).toHaveCount(1);
 	});
 
+	test('should save roll to history without pushing', async ({ page }) => {
+		await page.selectOption('#base', '1');
+		await page.click('button:has-text("Roll Dice")');
+		await page.click('button:has-text("New Roll")');
+
+		await expect(page.locator('.history-item')).toHaveCount(1);
+	});
+
 	test('should expand history item on click', async ({ page }) => {
 		await page.selectOption('#base', '1');
 		await page.click('button:has-text("Roll Dice")');
