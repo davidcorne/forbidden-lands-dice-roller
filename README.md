@@ -53,14 +53,20 @@ Upload contents of `build/` folder to any web host.
 
 ## Testing
 
-Run the test suite:
 ```bash
 npm test
 ```
 
-Run tests in watch mode:
+Runs both unit tests (32) and E2E tests (17).
+
+If running E2E tests separately:
 ```bash
-npm run test:watch
+npm run test:e2e
+```
+
+Install Playwright browsers if needed:
+```bash
+npx playwright install chromium
 ```
 
 ## License

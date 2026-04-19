@@ -274,7 +274,14 @@
 			<p style="color: var(--text-secondary); text-align: center;">No rolls yet</p>
 		{:else}
 			{#each savedRolls as roll, i}
-				<div class="history-item" class:expanded={expandedRoll === i} on:click={() => toggleExpand(i)}>
+				<div 
+					class="history-item" 
+					class:expanded={expandedRoll === i} 
+					on:click={() => toggleExpand(i)}
+					on:keydown={(e) => e.key === 'Enter' && toggleExpand(i)}
+					role="button"
+					tabindex="0"
+				>
 					<div class="header">
 						<span class="summary">
 							<span class="successes">{roll.finalSuccesses} Successes</span>
