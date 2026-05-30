@@ -15,11 +15,17 @@ const mimeTypes = {
 };
 
 const server = http.createServer((req, res) => {
-	let filePath = path.join(BUILD_DIR, req.url === '/' ? 'index.html' : req.url);
-	const ext = path.extname(filePath);
+	const requested = req.url === '/' ? '/index.html' : req.url;
+	const safePath = path.resolve(BUILD_DIR, '.' + requested);
+	if (!safePath.startsWith(path.resolve(BUILD_DIR))) {
+		res.writeHead(403);
+		res.end('Forbidden');
+		return;
+	}
+	const ext = path.extname(safePath);
 	const contentType = mimeTypes[ext] || 'text/plain';
 
-	fs.readFile(filePath, (err, content) => {
+	fs.readFile(safePath, (err, content) => {
 		if (err) {
 			if (err.code === 'ENOENT') {
 				fs.readFile(path.join(BUILD_DIR, 'index.html'), (e, c) => {
