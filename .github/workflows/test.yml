@@ -23,7 +23,7 @@ jobs:
         run: npm ci
 
       - name: Install Playwright browsers
-        run: npx playwright install chromium
+        run: npx playwright install chromium msedge
 
       - name: Run tests
         run: npm test
